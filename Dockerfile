@@ -16,10 +16,12 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Копирование конфига Nginx
 COPY nginx.conf /etc/nginx/http.d/default.conf
 
-# Выдача прав веб-серверу на папку хранилища и ассетов
+# Создание нужных папок и выдача прав на весь корень /app
 RUN mkdir -p /app/storage /app/public/assets \
-    && chown -R www-data:www-data /app/storage /app/public/assets
+    && chown -R www-data:www-data /app \
+    && chmod -R 775 /app/storage /app/public/assets
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+# Обновляем права при каждом запуске контейнера (на случай монтирования Volume) и запускаем сервисы
+CMD ["sh", "-c", "chown -R www-data:www-data /app && php-fpm -D && nginx -g 'daemon off;'"]
