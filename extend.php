@@ -14,7 +14,7 @@ return [
     (new Extend\Frontend('forum'))
         ->css(__DIR__ . '/less/forum.less')
         ->content(function (Document $document) {
-            $document->head[] = '<meta name="theme-color" content="#0b0f14">';
+            $document->head[] = '<meta name="theme-color" content="#0f141a">';
             $document->head[] = '<link rel="preconnect" href="https://fonts.googleapis.com">';
             $document->head[] = '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
             $document->head[] = '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';

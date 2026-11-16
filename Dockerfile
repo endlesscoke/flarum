@@ -22,7 +22,11 @@ RUN mkdir -p /app/storage /app/public/assets \
     && chown -R www-data:www-data /app \
     && chmod -R 775 /app/storage /app/public/assets
 
+# Копирование entrypoint-скрипта
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh && chmod +x /usr/local/bin/docker-entrypoint.sh
+
 EXPOSE 8080
 
-# Обновляем права при каждом запуске контейнера (на случай монтирования Volume) и запускаем сервисы
-CMD ["sh", "-c", "chown -R www-data:www-data /app && php-fpm -D && nginx -g 'daemon off;'"]
+# Запуск через entrypoint (автопроверка БД, права, php-fpm и nginx)
+CMD ["/usr/local/bin/docker-entrypoint.sh"]
