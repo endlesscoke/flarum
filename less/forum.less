@@ -1,0 +1,686 @@
+// ==========================================================================
+// Alongside-inspired Dark Theme for Flarum 2.0
+// ==========================================================================
+
+:root {
+  --body-bg: #0b0f14;
+  --control-bg: #1d2632;
+  --control-color: #c9d3de;
+  --control-danger-bg: #3b1d24;
+  --control-danger-color: #f28b9c;
+  --overlay-bg: rgba(11, 15, 20, 0.85);
+  --heading-color: #f0f4f8;
+  --text-color: #d0d8e2;
+  --muted-color: #8b98a8;
+  --muted-more-color: #647282;
+  --link-color: #6aa3c4;
+  --primary-color: #4b7f9e;
+  --secondary-color: #1d2632;
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --border-radius: 10px;
+}
+
+// Base & Background
+html,
+body {
+  background-color: #0b0f14 !important;
+  color: #d0d8e2 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-image: radial-gradient(
+    ellipse 70% 45% at 50% 14%,
+    rgba(36, 66, 94, 0.24) 0%,
+    rgba(11, 15, 20, 0) 72%
+  );
+  background-attachment: fixed;
+}
+
+a {
+  color: #6aa3c4;
+  transition: color 0.15s ease;
+
+  &:hover,
+  &:focus {
+    color: #8bc0de;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #f0f4f8;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: rgba(75, 127, 158, 0.35);
+  color: #ffffff;
+}
+
+// Subtle custom scrollbars
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f14;
+}
+::-webkit-scrollbar-thumb {
+  background: #232d3b;
+  border-radius: 9999px;
+  &:hover {
+    background: #313f52;
+  }
+}
+
+// ==========================================================================
+// App Shell & Header
+// ==========================================================================
+
+.App {
+  background: transparent;
+}
+
+.App-header {
+  background: rgba(11, 15, 20, 0.82) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+  min-height: 64px;
+
+  .Header-title {
+    color: #f0f4f8;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    font-size: 1.15rem;
+
+    a {
+      color: #f0f4f8;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .Header-primary,
+  .Header-secondary {
+    .Button--link {
+      color: #8b98a8;
+      font-weight: 500;
+      border-radius: 9999px;
+      padding: 7px 14px;
+      transition: color 0.15s ease, background-color 0.15s ease;
+
+      &:hover,
+      &:focus {
+        color: #f0f4f8;
+        background: rgba(255, 255, 255, 0.05);
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Pill buttons in header (Sign Up / Log In / etc.)
+  .item-signUp .Button,
+  .item-logIn .Button {
+    background: #1d2632;
+    color: #e6edf3;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    padding: 7px 16px;
+    font-weight: 500;
+
+    &:hover {
+      background: #263242;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+  }
+}
+
+.App-content {
+  border-top: none !important;
+  background: transparent !important;
+}
+
+// Mobile Drawer
+.App-drawer {
+  background: #10161e !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.App-navigation {
+  background: rgba(11, 15, 20, 0.92) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+// ==========================================================================
+// Search Input
+// ==========================================================================
+
+.Search-input {
+  input.FormControl {
+    background: #141b24 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 9999px !important;
+    color: #f0f4f8 !important;
+    padding-left: 36px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+
+    &::placeholder {
+      color: #647282;
+    }
+
+    &:focus {
+      background: #18212c !important;
+      border-color: #4b7f9e !important;
+      box-shadow: 0 0 0 3px rgba(75, 127, 158, 0.2) !important;
+    }
+  }
+
+  .Search-clear {
+    color: #8b98a8;
+  }
+}
+
+.Search-results {
+  background: #141b24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55) !important;
+}
+
+// ==========================================================================
+// Hero / Welcome Banner (Centered Reference Style)
+// ==========================================================================
+
+.Hero {
+  background: transparent !important;
+  color: #f0f4f8 !important;
+  border-bottom: none !important;
+  padding: 42px 0 32px;
+
+  .Hero-title {
+    color: #f0f4f8;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .Hero-subtitle {
+    color: #8b98a8;
+    line-height: 1.55;
+  }
+
+  .Hero-close {
+    color: #647282;
+    opacity: 0.75;
+
+    &:hover {
+      color: #f0f4f8;
+      opacity: 1;
+    }
+  }
+}
+
+.WelcomeHero {
+  text-align: center;
+  padding: 48px 0 36px;
+
+  .Hero-title {
+    font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .Hero-subtitle {
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 14px auto 0;
+  }
+}
+
+// ==========================================================================
+// Buttons & Controls
+// ==========================================================================
+
+.Button {
+  background: #1d2632;
+  color: #c9d3de;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.12s ease;
+
+  &:hover,
+  &:focus {
+    background: #253141;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  &:active {
+    background: #1a222d;
+  }
+
+  &.Button--primary {
+    background: #4b7f9e !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(75, 127, 158, 0.25);
+
+    &:hover,
+    &:focus {
+      background: #578eae !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    &:active {
+      background: #3f6e8a !important;
+    }
+  }
+
+  &.Button--link {
+    background: transparent;
+    border-color: transparent;
+    color: #8b98a8;
+
+    &:hover,
+    &:focus {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: transparent;
+      color: #f0f4f8;
+    }
+  }
+
+  &.Button--danger {
+    background: #3b1d24;
+    color: #f28b9c;
+    border-color: rgba(242, 139, 156, 0.2);
+
+    &:hover {
+      background: #4d252e;
+      color: #ffb0bd;
+    }
+  }
+}
+
+.FormControl {
+  background: #11171f !important;
+  color: #f0f4f8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 10px !important;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+
+  &::placeholder {
+    color: #647282;
+  }
+
+  &:focus {
+    background: #141c26 !important;
+    border-color: #4b7f9e !important;
+    box-shadow: 0 0 0 3px rgba(75, 127, 158, 0.2) !important;
+  }
+}
+
+// ==========================================================================
+// Sidebar Navigation
+// ==========================================================================
+
+.IndexPage-nav,
+.sideNav {
+  .IndexPage-newDiscussion {
+    width: 100%;
+    padding: 11px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+  }
+
+  .Dropdown-menu > li > a {
+    color: #8b98a8;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 2px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: #f0f4f8;
+    }
+  }
+
+  .Dropdown-menu > li.active > a {
+    background: #1d2632;
+    color: #f0f4f8;
+    font-weight: 600;
+  }
+}
+
+// ==========================================================================
+// Discussion List Card & Items
+// ==========================================================================
+
+.IndexPage-toolbar {
+  margin-bottom: 16px;
+}
+
+.DiscussionList-discussions {
+  background: #141b24;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.32);
+
+  > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0 !important;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.DiscussionListItem {
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 0 !important;
+  transition: background-color 0.16s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.03) !important;
+  }
+
+  .DiscussionListItem-title {
+    color: #f0f4f8;
+    font-weight: 600;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+  }
+
+  .DiscussionListItem-info {
+    color: #8b98a8;
+  }
+
+  .DiscussionListItem-count {
+    color: #8b98a8;
+  }
+
+  &.DiscussionListItem--unread .DiscussionListItem-title {
+    color: #ffffff;
+  }
+}
+
+// Topic / Tag Pills (matching reference pills)
+.TagLabel {
+  background: #1d2632 !important;
+  color: #c9d3de !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 9999px !important;
+  padding: 2px 10px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+
+  &.colored {
+    background: #1d2632 !important;
+    color: #e6edf3 !important;
+  }
+}
+
+.TagsLabel .TagLabel {
+  margin-right: 4px;
+}
+
+// ==========================================================================
+// Tags Page
+// ==========================================================================
+
+.TagTile {
+  background: #141b24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  transition: transform 0.16s ease, border-color 0.16s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.14) !important;
+  }
+
+  .TagTile-heading {
+    color: #f0f4f8;
+  }
+
+  .TagTile-description {
+    color: #8b98a8;
+  }
+
+  .TagTile-lastPostedDiscussion {
+    color: #8b98a8;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+// ==========================================================================
+// Discussion Page & Posts
+// ==========================================================================
+
+.DiscussionHero {
+  background: rgba(20, 27, 36, 0.55) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 32px 0;
+
+  .DiscussionHero-title {
+    color: #f0f4f8;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+.PostStream-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.Post {
+  color: #d0d8e2;
+
+  .Post-header {
+    color: #8b98a8;
+
+    .username {
+      color: #f0f4f8;
+      font-weight: 600;
+    }
+  }
+
+  .Post-body {
+    color: #d0d8e2;
+    line-height: 1.65;
+
+    pre {
+      background: #0e1319;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      color: #e6edf3;
+    }
+
+    code {
+      background: #1d2632;
+      color: #8bc0de;
+      border-radius: 5px;
+      padding: 2px 6px;
+    }
+
+    blockquote {
+      background: rgba(29, 38, 50, 0.45);
+      border-left: 3px solid #4b7f9e;
+      color: #a9b6c5;
+      border-radius: 0 10px 10px 0;
+      padding: 10px 16px;
+    }
+  }
+}
+
+.PostStream-scrubber,
+.Scrubber-scrollbar {
+  .Scrubber-handle {
+    background: #1d2632;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .Scrubber-bar {
+    background: #4b7f9e;
+  }
+}
+
+.ReplyPlaceholder {
+  background: #141b24 !important;
+  border: 1px dashed rgba(255, 255, 255, 0.12) !important;
+  border-radius: 14px !important;
+  color: #8b98a8 !important;
+
+  &:hover {
+    border-color: rgba(75, 127, 158, 0.5) !important;
+    color: #f0f4f8 !important;
+  }
+}
+
+// ==========================================================================
+// Composer (New Discussion / Reply Card)
+// ==========================================================================
+
+.Composer {
+  background: #141b24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: none !important;
+  border-radius: 16px 16px 0 0 !important;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.55) !important;
+
+  .Composer-header h3 {
+    color: #f0f4f8;
+  }
+
+  .ComposerBody-editor {
+    color: #d0d8e2;
+  }
+
+  .TextEditor-editor {
+    background: transparent !important;
+    color: #f0f4f8 !important;
+
+    &::placeholder {
+      color: #647282;
+    }
+  }
+
+  .TextEditor-controls {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+// ==========================================================================
+// Dropdowns, Modals, Alerts & Tooltips
+// ==========================================================================
+
+.Dropdown-menu {
+  background: #141b24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55) !important;
+  padding: 6px;
+
+  > li > a,
+  > li > button {
+    color: #c9d3de;
+    border-radius: 8px;
+
+    &:hover,
+    &:focus {
+      background: #1d2632 !important;
+      color: #ffffff !important;
+    }
+  }
+
+  > li.active > a,
+  > li.active > button {
+    background: #1d2632 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+  }
+
+  .Dropdown-separator {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+}
+
+.Modal-content {
+  background: #141b24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65) !important;
+  color: #d0d8e2;
+}
+
+.Modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+
+  .Modal-title {
+    color: #f0f4f8;
+  }
+}
+
+.Modal-body {
+  color: #d0d8e2;
+}
+
+.Modal-footer {
+  background: #10161e !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 0 0 16px 16px;
+}
+
+.Alert {
+  background: #1d2632;
+  color: #f0f4f8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+.UserCard {
+  background: #141b24;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.NotificationList {
+  background: #141b24 !important;
+  color: #d0d8e2;
+
+  .NotificationList-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .Notification:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+// ==========================================================================
+// Responsive Adjustments
+// ==========================================================================
+
+@media (max-width: 767.98px) {
+  .WelcomeHero {
+    padding: 32px 12px 24px;
+  }
+
+  .DiscussionList-discussions {
+    border-radius: 12px;
+  }
+}
