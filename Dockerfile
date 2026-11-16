@@ -13,8 +13,9 @@ COPY . .
 # Установка зависимостей из твоего composer.json
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Копирование конфига Nginx
+# Копирование конфига Nginx и отключение очистки env в PHP-FPM
 COPY nginx.conf /etc/nginx/http.d/default.conf
+RUN echo "clear_env = no" >> /usr/local/etc/php-fpm.d/zz-docker.conf
 
 # Создание нужных папок и выдача прав на весь корень /app
 RUN mkdir -p /app/storage /app/public/assets \
